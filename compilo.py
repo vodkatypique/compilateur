@@ -5,6 +5,7 @@ class Memoire():
 
         self.pcode = list()
         self.pointeur_instruction = 0
+        self.INST = None
 
     def ADD(self):
         ajout = self.pile.pop()+self.pile.pop()
@@ -108,7 +109,9 @@ class Memoire():
 
     def runPcode(self):
         while(True):
-            eval("self." + self.pcode[self.pointeur_instruction])
+            self.INST = self.pcode[self.pointeur_instruction]
+            print(self.INST)
+            eval("self." + self.INST)
 
 
 prog = Memoire()
