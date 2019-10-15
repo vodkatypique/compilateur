@@ -138,5 +138,3 @@ prog.pcode.extend([
 
 print(prog.pcode)
 prog.runPcode()
-
-test ajout other user
