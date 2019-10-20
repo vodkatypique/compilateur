@@ -107,34 +107,41 @@ class Memoire():
     def HLT(self):
         quit()
 
-    def runPcode(self):
+    #def runPcode(self):
+    #    while(True):
+    #        self.INST = self.pcode[self.pointeur_instruction]
+    #        print(self.INST)
+    #        eval("self." + self.INST)
+
+    def convert_parenthese_and_run(self):
         while(True):
             self.INST = self.pcode[self.pointeur_instruction]
-            print(self.INST)
-            eval("self." + self.INST)
+            self.INST = self.INST.split(" ")
+            argument = [int(arg) for arg in self.INST[1:]]
+            getattr(self, self.INST[0])(*argument)
 
 
 prog = Memoire()
 prog.pcode.extend([
-    "INT(2)",
-    "LDA(0)",
-    "INN()",
-    "LDA(1)",
-    "LDA(0)",
-    "LDV()",
-    "LDA(1)",
-    "LDV()",
-    "ADD()",
-    "STO()",
-    "LDA(0)",
-    "LDV()",
-    "LDI(0)",
-    "EQL()",
-    "BZE(1)",
-    "LDA(1)",
-    "LDV()",
-    "PRN()",
-    "HLT()"])
+    "INT 2",
+    "LDA 0",
+    "INN",
+    "LDA 1",
+    "LDA 0",
+    "LDV",
+    "LDA 1",
+    "LDV",
+    "ADD",
+    "STO",
+    "LDA 0",
+    "LDV",
+    "LDI 0",
+    "EQL",
+    "BZE 1",
+    "LDA 1",
+    "LDV",
+    "PRN 2",
+    "HLT"])
 
-print(prog.pcode)
-prog.runPcode()
+#print(prog.pcode)
+prog.convert_parenthese_and_run()
