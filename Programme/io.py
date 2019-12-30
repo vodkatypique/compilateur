@@ -4,5 +4,5 @@ def PRN(self):
 
 
 def INN(self):
-    self.pile[self.pile.pop()] = int(input())
+    self.pile[self.pile[-1]] = int(input())
     self.pointeur_instruction += 1

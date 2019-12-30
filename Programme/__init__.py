@@ -15,9 +15,12 @@ class Programme():
     from .branchement import BRN, BZE
 
     def convert_parenthese_and_run(self):
+        self.pointeur_instruction = 0
         while(True):
+            print(self.pile, self.pointeur_instruction)
             self.INST = self.pcode[self.pointeur_instruction]
             self.INST = self.INST.split(" ")
+            print(self.INST)
             argument = [int(arg) for arg in self.INST[1:]]
             getattr(self, self.INST[0])(*argument)
 
@@ -31,4 +34,4 @@ class Programme():
         if self.pointeur_instruction == 20000:
             print("erreur taille pc")
         self.pointeur_instruction += 1
-        self.pcode.append(mnemoniques + " " + str(arg))    
+        self.pcode.append(mnemoniques + " " + str(arg))

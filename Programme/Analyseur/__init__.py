@@ -7,12 +7,12 @@ class AnalyseurLexical():
         self.tokens = {
             'id_token': "^(?!^program$|^const$|^var$|^begin$|^end$|^if$|^then$|^while$|^do$|^write$|^read$)[a-zA-Z]+[0-9]*$",
             'keyword': ("^program$|^const$|^var$|^begin$|^end$|^if$|^then$|^while$|^do$|^write$|^read$"),
-            'num_token': "^[1-9]+[0-9]*$",
+            'num_token': ("^[1-9]+[0-9]*$|^0$"),
             'plus_token': "^\+$",
             'moins_token': "^-$",
             'mult_token': "^\*$",
             'div_token': "^/$",
-            'egal_token': "^=$",
+            'egal_token': "^==$",
             'diff_token': "^!=$",
             'inf_token': "^<$",
             'sup_token': "^>$",
@@ -43,16 +43,29 @@ class AnalyseurLexical():
         self.tokens_code = None
         self.tableDesSymboles = []
         self.ensembleNom = set()
+
+        self.retenu = None
+        self.autre = None
     
     def tokenizeCode(self, code):
         self.tokens_code = code.replace(";", " ;").replace(",", " ,").replace(".", " .").split()
 
     def test(self, t):
         if not re.match(t, self.tokens_code[self.index_token]):
-            print('Erreur : analyseurLexical, attendu : ' + self.tokens_code[self.index_token])
+            print('Erreur : analyseurLexical, attendu : ' + self.tokens_code[self.index_token] + "," + t)
         else:
             self.index_token += 1
+
+    def next_inst(self):
+        if self.retenu is None:
+            self.retenu = len(self._program.pcode)
+        else:
+            self.autre = len(self._program.pcode)
+
+
+    def remplir_inst(self):
+        self._program.pcode[self.retenu] = "BZE" + " " + str(self.autre)
     
-    from .tableSymbole import chercherSym, entrerSym
+    from .tableSymbole import chercherSym, entrerSym, compareSym
     from .structures import program, affec, block, cond, consts, ecrire, expr, fact, inst, insts, lire, si, tantque, term, vars
     

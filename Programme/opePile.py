@@ -16,7 +16,7 @@ def LDV(self):
 
 def STO(self):
     valeur = self.pile.pop()
-    adresse = self.pile.pop()
+    adresse = self.pile.pop()#! ici
     self.pile[adresse] = valeur
     self.pointeur_instruction += 1
 
