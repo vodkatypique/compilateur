@@ -4,5 +4,10 @@ def PRN(self):
 
 
 def INN(self):
-    self.pile[self.pile[-1]] = int(input())
-    self.pointeur_instruction += 1
+    try:
+        self.pile[self.pile[-1]] = int(input())
+        self.pointeur_instruction += 1
+    except ValueError:
+        print("ERREUR dans l'entrée, doit etre convertible en int")
+        import sys
+        sys.exit()

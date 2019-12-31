@@ -20,9 +20,12 @@ class Programme():
             #print(self.pile, self.pointeur_instruction)
             self.INST = self.pcode[self.pointeur_instruction]
             self.INST = self.INST.split(" ")
-            #print(self.INST)
+                #print(self.INST)
             argument = [int(arg) for arg in self.INST[1:]]
-            getattr(self, self.INST[0])(*argument)
+            try:
+                getattr(self, self.INST[0])(*argument)
+            except Exception:
+                print("Erreur sur l'argument generé")
 
     def generer1(self, mnemoniques):
         if self.pointeur_instruction == 20000:
