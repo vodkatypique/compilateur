@@ -1,0 +1,9 @@
+program P1;
+var A, B;
+begin read ( A );
+	B := A;
+    while A != 0 do begin read ( A );
+        B := A + B;
+    end;
+    write ( B );
+end.

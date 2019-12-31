@@ -1,5 +1,6 @@
 import Programme
 import Programme.Analyseur
+import parseTxt
 
 """
     "INT 2",
@@ -26,10 +27,10 @@ import Programme.Analyseur
 
 
 programme_init = Programme.Programme()
-#source = "program P1; var A, B; \n begin read ( A ); read ( B ); write ( A ); write ( B ) end."
-source = "program P1; var A, B; begin read ( A ); B := A; while A != 0 do begin read ( A ); B := A + B; end; write ( B ) end."
+source = parseTxt.parse()
+#print(source)
 analyseur = Programme.Analyseur.AnalyseurLexical(programme_init)
 analyseur.tokenizeCode(source)
 analyseur.program()
-print(programme_init.pcode)
+#print(programme_init.pcode)
 programme_init.convert_parenthese_and_run()

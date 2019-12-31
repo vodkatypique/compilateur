@@ -17,10 +17,10 @@ class Programme():
     def convert_parenthese_and_run(self):
         self.pointeur_instruction = 0
         while(True):
-            print(self.pile, self.pointeur_instruction)
+            #print(self.pile, self.pointeur_instruction)
             self.INST = self.pcode[self.pointeur_instruction]
             self.INST = self.INST.split(" ")
-            print(self.INST)
+            #print(self.INST)
             argument = [int(arg) for arg in self.INST[1:]]
             getattr(self, self.INST[0])(*argument)
 
